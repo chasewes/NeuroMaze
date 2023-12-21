@@ -9,7 +9,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 def load_model():
     model = Seq2Seq(num_channels=3, num_actions=4, num_kernels=64, kernel_size=(3, 3), padding=(1, 1), activation="relu", frame_size=(32, 32), num_layers=5)
     model.to(device)
-    load_checkpoint('checkpoints/primary_checkpoint.pth.tar', model, device=device)
+    load_checkpoint('app/checkpoints/primary_checkpoint.pth.tar', model, device=device)
     model.eval()
     return model
 
