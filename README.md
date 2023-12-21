@@ -12,7 +12,7 @@ NeuroMaze is a project that reimagines game development through the lens of deep
 NeuroMaze uses a convolutional LSTM architecture designed for next-frame prediction. It takes a 32x32 image of the current game state (the maze) and the player's action (up, down, left, or right) as input. The model then predicts the next frame, essentially deciding the new position of the player in the maze and updating the game state accordingly. This process mimics the core functionality of a traditional game engine but is driven entirely by the deep learning model.
 
 ### Technical Highlights:
-- **Data Generation**: The dataste was generated on a python maze game autonomously played through randomly generated mazes, saving the frame, action, and resulting frame data for training. (10,000 frames were saved for training)
+- **Data Generation**: The dataset was generated on a python maze game autonomously played through randomly generated mazes, saving the frame, action, and resulting frame data for training. (10,000 frames were saved for training)
 - **Model Training**: The model is trained on a dataset comprising both correct and incorrect moves to understand the game's dynamics fully.
 - **Real-Time Prediction**: Integrated into a web app, the model runs in real-time on a CPU, allowing players to interact with the maze directly.
 
