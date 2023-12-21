@@ -7,9 +7,6 @@ from torchvision.transforms import ToTensor
 
 
 def generate_maze(width, height, block_size):
-
-    #seed random number generator
-    random.seed(random.randint(0, 1000))
     # Initialize maze with walls (1) everywhere
     maze = [[1 for _ in range(width // block_size)] for _ in range(height // block_size)]
 
@@ -41,7 +38,7 @@ def generate_maze(width, height, block_size):
         end_x, end_y = random.randint(1, (width // block_size) - 2), random.randint(1, (height // block_size) - 2)
 
     maze[end_y][end_x] = 2  # Goal position marked as 2
-    # print(maze)
+    print(maze)
 
     return maze_to_image(maze)
 
@@ -82,30 +79,3 @@ def load_checkpoint(filepath, model, optimizer=None, scheduler=None, device='cpu
     if scheduler and 'scheduler' in checkpoint:
         scheduler.load_state_dict(checkpoint['scheduler'])
     return checkpoint['epoch']
-
-
-def scale_image(maze_image, scale_factor=10):
-    """ Scale up an image by a certain factor. """
-    width, height = maze_image.size
-    new_width, new_height = width * scale_factor, height * scale_factor
-
-    # Create a new image with the scaled dimensions
-    scaled_image = Image.new("RGB", (new_width, new_height))
-
-    # Get pixel data from the original image
-    pixels = maze_image.load()
-
-    draw = ImageDraw.Draw(scaled_image)
-
-    # Draw each pixel from the original image as a larger block
-    for y in range(height):
-        for x in range(width):
-            color = pixels[x, y]
-            draw.rectangle([
-                x * scale_factor, 
-                y * scale_factor, 
-                (x + 1) * scale_factor - 1, 
-                (y + 1) * scale_factor - 1
-            ], fill=color)
-
-    return scaled_image

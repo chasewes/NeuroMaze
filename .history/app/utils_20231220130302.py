@@ -41,7 +41,7 @@ def generate_maze(width, height, block_size):
         end_x, end_y = random.randint(1, (width // block_size) - 2), random.randint(1, (height // block_size) - 2)
 
     maze[end_y][end_x] = 2  # Goal position marked as 2
-    # print(maze)
+    print(maze)
 
     return maze_to_image(maze)
 

@@ -7,9 +7,6 @@ from torchvision.transforms import ToTensor
 
 
 def generate_maze(width, height, block_size):
-
-    #seed random number generator
-    random.seed(random.randint(0, 1000))
     # Initialize maze with walls (1) everywhere
     maze = [[1 for _ in range(width // block_size)] for _ in range(height // block_size)]
 
@@ -41,7 +38,7 @@ def generate_maze(width, height, block_size):
         end_x, end_y = random.randint(1, (width // block_size) - 2), random.randint(1, (height // block_size) - 2)
 
     maze[end_y][end_x] = 2  # Goal position marked as 2
-    # print(maze)
+    print(maze)
 
     return maze_to_image(maze)
 
@@ -72,7 +69,7 @@ def preprocess_image(image, action_one_hot):
 
 def postprocess_image(image_tensor):
     """ Postprocess the model output to viewable image """
-    return transforms.functional.to_pil_image(image_tensor.squeeze(0))
+    return transforms.functional.to_pil_image(image_tensor)
 
 def load_checkpoint(filepath, model, optimizer=None, scheduler=None, device='cpu'):
     checkpoint = torch.load(filepath, map_location=device)
